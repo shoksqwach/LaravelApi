@@ -39,12 +39,8 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        if ($task->wasChanged()) {
-            $task->update($request->all());
-            return response()->json(['message' => 'Задача успешно обновлена'], 200);
-        } else {
-            return response()->json(['message' => 'Данные не изменились'], 422);
-        }
+        $task->update($request->all());
+        return response()->json(['data' => $task], 200);
     }
 
     /**
